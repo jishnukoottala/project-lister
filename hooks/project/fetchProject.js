@@ -17,9 +17,8 @@ export const useFetchProjects = () => {
             
             const querySnapshot =  await getDocs(collection(db, "projects"));
             const projectsLocal = []
-            console.log("querySnapshot",querySnapshot.forEach((doc)=> console.log("data ",doc.data())))
-
-            querySnapshot.forEach((doc)=> projectsLocal.push({...doc.data(), id: doc.id }))
+          
+            querySnapshot.forEach((doc)=> projectsLocal.push({...doc.data(), createdAt:doc.data()?.createdAt?.toDate()?.toDateString(), id: doc.id }))
             setProjects(projectsLocal);
 
         }catch(err){
