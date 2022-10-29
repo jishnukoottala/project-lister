@@ -51,7 +51,7 @@ export default function ProjectItem() {
          <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-1 gap-y-2">
          <ProjectForm  onUpdateHandler={onUpdateHandler} projectData={project} isUpdateForm updateLoading={updateLoading} />
  
-         <div className="border border-solid border-slate-400 p-4">Project Tasks</div>
+         <div className="border border-solid rounded-md border-slate-400 p-4">Project Tasks</div>
      </div>
       )}
     </div>
