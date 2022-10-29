@@ -3,7 +3,8 @@ import Button from '../Button'
 
 export default function ProjectForm({id, onUpdateHandler, projectData = {workflow: "", projectName: "" }, 
 isUpdateForm = false,
-updateLoading = false
+updateLoading = false,
+createLoading = false
 }) {
 
     const [showDropDown, setShowDropDown] = useState(false)
@@ -33,14 +34,14 @@ updateLoading = false
     }
 
   return (
-    <div className="container border border-solid border-gray-400 m-auto">
+    <div className="container border rounded-md border-solid border-gray-400 m-auto">
      <div className="flex items-center justify-center p-12">
     
      <form className="mx-auto w-full max-w-[550px]" method="POST"> 
      {error && <div className="mt-5 w-full max-w-[40ch]  py-2 text-rose-600 text-center">{error}</div> } 
      <div className="mb-5">
         <label
-          for="projectName"
+          htmlFor="projectName"
           className="mb-3 block text-base font-semibold text-slate-900"
         >
          Project Name
@@ -58,7 +59,7 @@ updateLoading = false
       <div>
       <div className="mb-5"> 
       <label
-          for="workflow"
+          htmlFor="workflow"
           className="mb-3 block text-base font-semibold text-slate-900 mr-3"
         >
          Workflow
@@ -103,7 +104,7 @@ updateLoading = false
         
             <div className="mb-5">
         <label
-          for="createdAt"
+          htmlFor="createdAt"
           className="mb-3 block text-base font-semibold text-slate-900"
         >
          Created At
@@ -120,7 +121,7 @@ updateLoading = false
       </div>
             <div className="mb-5">
         <label
-          for="updatedAt"
+          htmlFor="updatedAt"
           className="mb-3 block text-base font-semibold text-slate-900"
         >
          Updated At
@@ -135,12 +136,9 @@ updateLoading = false
           className="w-full text-slate-500 cursor-not-allowed rounded-md border border-gray-200 bg-white py-3 px-6 text-base font-medium  outline-none focus:border-gray-400 focus:shadow-md"
         />
       </div>
-
-      
-        
       <div className="mb-5"> 
       <label
-          for="status"
+          htmlFor="status"
           className="mb-3 block text-base font-semibold text-slate-900 mr-3"
         >
          Status
@@ -188,9 +186,10 @@ updateLoading = false
         </>)}
         <Button
         onClick={onSubmitHandler}
-        disabled={updateLoading}
+        disabled={updateLoading || createLoading}
         >
-          <h1 className="text-base font-semibold text-white">{isUpdateForm ? updateLoading ? 'Updating' : 'Update': 'Create'}</h1>
+          <h1 className="text-base font-semibold text-white">
+            {isUpdateForm ? updateLoading ? 'Updating...' : 'Update': createLoading ? 'Creating...' : 'Create'}</h1>
         </Button>
       </div>
      
