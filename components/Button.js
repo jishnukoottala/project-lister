@@ -19,7 +19,6 @@ export default function Button({ children, onClick, asLink = false , href, fullW
     }
 
     const variantClassName = getVariants(variant);
-    console.log("variantClassName",variantClassName)
     const disabledClassName = disabled ? "cursor-not-allowed border border-solid border-red-500" : ""
 
 
