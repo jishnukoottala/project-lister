@@ -1,17 +1,13 @@
-import { useAuth } from "../context/AuthContext"
-import CreateProject from "./Project/CreateProject"
-import ProjectListing from "./Project/ProjectListing"
-
+import { useAuth } from "../context/AuthContext";
+import CreateProject from "./Project/CreateProject";
+import ProjectListing from "./Project/ProjectListing";
 
 export default function UserDashBoard() {
-
-    const { currentUser } = useAuth()
+  const { currentUser } = useAuth();
   return (
     <div>
-        <CreateProject />
-        <ProjectListing />
-        
-      
+      <CreateProject />
+      <ProjectListing />
     </div>
-  )
+  );
 }
