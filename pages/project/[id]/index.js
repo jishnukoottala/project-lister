@@ -1,14 +1,16 @@
 import React from "react";
 import { useRouter } from "next/router";
-import { useFetchProject } from "../../hooks/project/fetchProject";
-import ProjectForm from "../../components/Project/ProjectForm";
-import { useUpdateProject } from "../../hooks/project/updateProject";
-import Button from "../../components/Button";
-import SpinnerLarge from "../../components/Loader/SpinnerLarge";
+import { useAuth } from "@/context/AuthContext";
+import { useFetchProject } from "../../../hooks/project/fetchProject";
+import ProjectForm from "@/projectcomponents/ProjectForm";
+import { useUpdateProject } from "@/hooks/project/updateProject";
+import Button from "@/common_components/Button";
+import SpinnerLarge from "@/components/common/Loader/SpinnerLarge";
+import PageList from "@/pagecomponents/PageList";
 
 export default function ProjectItem() {
   const router = useRouter();
-
+  const { currentUser } = useAuth();
   const { id } = router.query;
   const { loading, error, project } = useFetchProject(id);
   const {
@@ -17,8 +19,6 @@ export default function ProjectItem() {
     updateData,
     deleteData,
   } = useUpdateProject();
-
-  console.log("project", project);
 
   const onUpdateHandler = async (_, projectData) => {
     try {
@@ -31,6 +31,23 @@ export default function ProjectItem() {
     } catch (err) {}
   };
 
+  const onCreatePage = async () => {
+    // const pageData = {
+    //   name: "demo_page",
+    //   few: "few1",
+    //   tree: "tree1",
+    // };
+
+    // try {
+    //   console.log("pageData", pageData);
+    //   await createPage(id, pageData, currentUser);
+    //   //   const projectRef = await createProject(projectData,currentUser)
+    //   //   console.log("projectId  ", projectRef.id)
+    //   //   router.push("/")
+    // } catch (err) {}
+    router.push(`/project/${id}/page`);
+  };
+
   const onDeleteHandler = async () => {
     try {
       await deleteData(id);
@@ -41,7 +58,10 @@ export default function ProjectItem() {
   return (
     <div>
       {!loading && !updateLoading && (
-        <div className="w-full p-3 my-4 border rounded border-solid border-gray-500 flex justify-end">
+        <div className="w-full p-3 my-4 border rounded border-solid border-gray-500 flex justify-end ">
+          <div className="mr-3">
+            <Button onClick={() => onCreatePage()}> Create Page</Button>{" "}
+          </div>
           <Button variant="warning" fullWidth={false} onClick={onDeleteHandler}>
             <i class="fa-solid fa-trash-can mr-2"></i>Delete Project
           </Button>
@@ -55,7 +75,7 @@ export default function ProjectItem() {
       )}
       {loading && <SpinnerLarge />}
       {project && !loading && (
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-1 gap-y-2">
+        <div className="grid grid-cols-1 md:grid-cols-[200px_1fr] lg:grid-cols-[350px_minmax(900px,_1fr)] gap-x-1 gap-y-2">
           <ProjectForm
             onUpdateHandler={onUpdateHandler}
             projectData={project}
@@ -64,7 +84,15 @@ export default function ProjectItem() {
           />
 
           <div className="border border-solid rounded-md border-slate-400 p-4">
-            Project Tasks
+            <PageList projectId={id} />
+            {/* {!loading && <PageForm />} */}
+
+            {createPageLoading && (
+              <div className="container mx-auto mb-5 text-center text-orange-500 font-bold text-xl">
+                {" "}
+                Creating.......
+              </div>
+            )}
           </div>
         </div>
       )}

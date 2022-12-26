@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useAuth } from "../../context/AuthContext";
-import Button from "../../components/Button";
+import Button from "../../components/common/Button";
 
 export default function UserProfile() {
   const { currentUser, updateDisplayName } = useAuth();

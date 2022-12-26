@@ -1,0 +1,15 @@
+{ 
+    "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/components/*": ["components/*"],
+      "@/pagecomponents/*":["components/Page/*"],
+      "@/projectcomponents/*":["components/Project/*"],
+      "@/hooks/*": ["hooks/*"],
+      "@/pages/*": ["pages/*"],
+      "@/context/*":["context/*"],
+      "@/common_components/*":["components/common/*"],
+    }
+  }
+
+}

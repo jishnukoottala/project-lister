@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Button from "../Button";
+import Button from "../common/Button";
 
 export default function ProjectForm({
   id,
@@ -35,7 +35,7 @@ export default function ProjectForm({
 
   return (
     <div className="container border rounded-md border-solid border-gray-400 m-auto">
-      <div className="flex items-center justify-center p-12">
+      <div className="flex items-center justify-center sm:p-4 md:p-3 lg:p-5 xl:p-12">
         <form className="mx-auto w-full max-w-[550px]" method="POST">
           {error && (
             <div className="mt-5 w-full max-w-[40ch]  py-2 text-rose-600 text-center">
