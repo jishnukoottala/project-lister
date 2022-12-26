@@ -16,12 +16,20 @@ const Login = () => {
     }
     if (isLoggingIn) {
       try {
-        return await login(email, password);
+        await login(email, password);
       } catch (err) {
         setError("Incorrect email/password");
       }
     }
-    await signup(email, password);
+    signupUser();
+  };
+
+  const signupUser = async () => {
+    try {
+      await signup(email, password);
+    } catch (err) {
+      setError("Some error occured");
+    }
   };
 
   const switchLoginRegister = async () => {
