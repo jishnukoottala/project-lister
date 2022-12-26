@@ -45,7 +45,7 @@ export default function Button({
       disabled={disabled}
       className={`${getVariants(
         variant
-      )} ${disabledClassName} hover:shadow-form rounded-md bg-[#0067a0] py-3 px-8 text-center text-base font-semibold text-white outline-none ${
+      )} ${disabledClassName} hover:shadow-form rounded-md  py-3 px-8 text-center text-base font-semibold text-white outline-none ${
         fullWidth ? "w-full" : ""
       }`}
     >
